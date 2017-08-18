@@ -13,6 +13,12 @@ class CampanasTable extends Migration
     public function up()
     {
         //
+        Schema::create('campanas', function($table){
+            $table->increments('id');
+            $table->string('campana');
+            $table->integer('id_unidad');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +29,6 @@ class CampanasTable extends Migration
     public function down()
     {
         //
+        Schema::drop('campanas');
     }
 }

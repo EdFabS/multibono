@@ -13,6 +13,12 @@ class CampanaModeloTable extends Migration
     public function up()
     {
         //
+        Schema::create('campanas_modelos',function($table){
+            $table->increments('id');
+            $table->integer('id_modelo');
+            $table->integer('id_campana');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +29,6 @@ class CampanaModeloTable extends Migration
     public function down()
     {
         //
+        Schema::drop('campanas_modelos');
     }
 }

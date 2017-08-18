@@ -13,11 +13,11 @@ class FoliosTable extends Migration
     public function up()
     {
         //
-        Schema::create('vins_folio_brands', function($table){
+        Schema::create('vins_folio_campanas', function($table){
             $table->increments('id');
             $table->string('folio');
             $table->integer('id_vin');
-            $table->intiger('id_campana');
+            $table->integer('id_campana');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class FoliosTable extends Migration
     public function down()
     {
         //
-        Schema::drop('vins_folio_brands');
+        Schema::drop('vins_folio_campanas');
     }
 }

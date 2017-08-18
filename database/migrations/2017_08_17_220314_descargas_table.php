@@ -13,6 +13,12 @@ class DescargasTable extends Migration
     public function up()
     {
         //
+        Schema::create('descargas', function($table){
+            $table->increments('id');
+            $table->boolean('terminos');
+            $table->integer('id_vfc');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +29,6 @@ class DescargasTable extends Migration
     public function down()
     {
         //
+        Schema::drop('descargas');
     }
 }

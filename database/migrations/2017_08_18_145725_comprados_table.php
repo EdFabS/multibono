@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModelosTable extends Migration
+class CompradosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class ModelosTable extends Migration
     public function up()
     {
         //
-        Schema::create('modelos', function($table){
+        Schema::create('comprados',function($table){
             $table->increments('id');
-            $table->string('modelo');
+            $table->integer('id_model');
+            $table->integer('id_redimido');
+            $table->string('new_vin');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class ModelosTable extends Migration
     public function down()
     {
         //
-        Schema::drop('modelos');
+        Schema::drop('comprados');
     }
 }

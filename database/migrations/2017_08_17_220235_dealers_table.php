@@ -13,6 +13,11 @@ class DealersTable extends Migration
     public function up()
     {
         //
+        Schema::create('dealers', function($table){
+            $table->increments('id');
+            $table->string('dealer');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +28,6 @@ class DealersTable extends Migration
     public function down()
     {
         //
+        Schema::drop('dealers');
     }
 }

@@ -13,6 +13,15 @@ class RedimidosTable extends Migration
     public function up()
     {
         //
+        Schema::create('redimidos', function($table){
+            $table->increments('id');
+            $table->integer('id_dealer');
+            $table->integer('id_vfc');
+            $table->string('full_name');
+            $table->string('relationship');
+            $table->string('salesman');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +32,6 @@ class RedimidosTable extends Migration
     public function down()
     {
         //
+        Schema::drop('redimidos');
     }
 }

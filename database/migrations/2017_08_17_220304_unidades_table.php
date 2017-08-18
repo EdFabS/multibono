@@ -13,6 +13,11 @@ class UnidadesTable extends Migration
     public function up()
     {
         //
+        Schema::create('unidades_negocio', function($table){
+            $table->increments('id');
+            $table->string('unidad');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,5 +28,6 @@ class UnidadesTable extends Migration
     public function down()
     {
         //
+        Schema::drop('unidades_negocio');
     }
 }
