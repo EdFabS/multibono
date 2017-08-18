@@ -1,0 +1,22 @@
+
+***********************************************************
+*                       problem                           *
+***********************************************************
+
+Al clonar un proyecto de git lab ya creado en otra computadora generaron los siguientes errores
+
+error
+
+	bootstrap/../vendor/autoload.php. Failed to open stream: No such file or directory. The "vendor" folder does not exist.
+
+solved
+
+	composer update
+
+error
+
+	No supported encrypter found. The cipher and / or key length are invalid
+
+solved
+
+	php artisan key:generate
