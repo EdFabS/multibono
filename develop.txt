@@ -1,0 +1,70 @@
+**************************************************************
+*            Roler de usuario laravel 5.2                    *
+**************************************************************
+
+Antes de crear la autenticacion en Laravel 5.2 hay que crear en 
+el archivo migration y en el archivo controller de Auth el campo 
+que vamos a manejar como de roles y despues procedemos a hacer 
+el proceso normal para la creacion de authenticación.
+
+En el cntroloador que se requiera espesificar usuario 
+llammamos a la clase:
+
+	use Auth;
+
+y en el constructor preguntamos que usuario es
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Auth;
+use App\Http\Requests;
+
+class Campanas_Controller extends Controller
+{
+	public function __construct()
+    {
+        $this->middleware('auth');
+        if(Auth::user()->role != 'admin') {
+            Auth::logout();
+        }
+    }
+    //
+    public function crear_campana(){
+    	echo 'entro';
+    }
+}
+
+
+
+**************************************************************
+*            Installing setasign/fpdf,fpdi                   *
+**************************************************************
+
+Instalar las dependencias por medio de composer
+
+	composer require setasign/fpdf:~1.8
+	composer require setasign/fpdi:~1.6.1
+
+Una vez instalado en nuestro proyecto hacemos el llamado de las
+clases para que laravel las interprete.
+
+
+**************************************************************
+*                Installing Forms & HTML                     *
+**************************************************************
+
+https://laravelcollective.com/docs/5.2/html
+
+composer require "laravelcollective/html":"^5.2.0"
+
+agrega facades y aliases
+
+		// Forms & HTML
+        Collective\Html\HtmlServiceProvider::class,
+
+        // Forms & HTML
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
