@@ -55,14 +55,20 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <!-- <li><a href="{{ url('/register') }}">Register</a></li> -->
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->name }}<span class="caret"></span>
                             </a>
-
                             <ul class="dropdown-menu" role="menu">
+                                @if(Auth::user()->role == 'admin')
+                                    <li><a href="{{ url('/campanas') }}">Campañas</a></li>
+                                @endif
+                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'service')
+                                    <li><a href="{{ url('/vin') }}">agerega vin</a></li>
+                                    <li><a href="{{ url('/vins') }}">agrega vins</a></li>
+                                @endif
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>
