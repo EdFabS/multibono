@@ -18,3 +18,13 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+//listar/crear unidades de negocios
+Route::get('unidades', 'Unidades_Controller@unidades');
+Route::post('crear_unidad', 'Unidades_Controller@crear_unidad');
+//listar/crear modelos
+Route::get('modelos', 'Modelo_Controller@modelos');
+Route::post('crear_modelo', 'Modelo_Controller@crear_modelo');
+//listar/crear campañas
+Route::get('campanas', 'Campanas_Controller@campanas');
+Route::post('crear_campana', 'Campanas_Controller@crear_campana');
