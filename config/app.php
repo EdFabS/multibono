@@ -149,6 +149,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         // Forms & HTML
         Collective\Html\HtmlServiceProvider::class,
+        // Laravel Excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -206,6 +208,8 @@ return [
         // Forms & HTML
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        // Laravel Excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

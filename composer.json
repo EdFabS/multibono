@@ -10,7 +10,8 @@
         "doctrine/dbal": "v2.5.12",
         "setasign/fpdf": "~1.8",
         "setasign/fpdi": "~1.6.1",
-        "laravelcollective/html": "^5.2.0"
+        "laravelcollective/html": "^5.2.0",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

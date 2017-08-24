@@ -28,3 +28,13 @@ Route::post('crear_modelo', 'Modelo_Controller@crear_modelo');
 //listar/crear campañas
 Route::get('campanas', 'Campanas_Controller@campanas');
 Route::post('crear_campana', 'Campanas_Controller@crear_campana');
+//agregar vis
+Route::get('vin', 'Vin_Controller@vin');
+Route::post('addVin', 'Vin_Controller@addVin');
+//agregar vins
+Route::get('vins', 'Vins_Controller@vins');
+Route::post('addVins', 'Vins_Controller@addVins');
+//descarga de bono dependiendo la campaña
+Route::get('descarga/','Descarga_Controller@descarga');
+Route::get('descarga/{campana}','Descarga_Controller@descarga');
+Route::post('descarga_bono','Descarga_Controller@descarga_bono');
