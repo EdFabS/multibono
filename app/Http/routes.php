@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/','Descarga_Controller@descarga');
+Route::get('/','Form_Descarga_Controller@descarga');
 
 Route::auth();
 
@@ -37,6 +37,9 @@ Route::post('addVin', 'Vin_Controller@addVin');
 Route::get('vins', 'Vins_Controller@vins');
 Route::post('addVins', 'Vins_Controller@addVins');
 //descarga de bono dependiendo la campaña
-Route::get('descarga/','Descarga_Controller@descarga');
-Route::get('descarga/{campana}','Descarga_Controller@descarga');
+Route::get('descarga/','Form_Descarga_Controller@descarga');
+Route::get('descarga/{campana}','Form_Descarga_Controller@descarga');
 Route::post('descarga_bono','Descarga_Controller@descarga_bono');
+//redimir folios
+Route::get('folio', 'Folio_Controller@folio');
+Route::post('buscar_folio', 'Folio_Controller@buscar_folio');

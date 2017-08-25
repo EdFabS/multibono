@@ -21,6 +21,9 @@
             </ul>
         </div>
     @endif
+    @if (Session::has('vin_invalido'))
+        <div class="alert alert-danger">{{ Session::get('vin_invalido') }}</div>
+    @endif
     @if (Session::has('bonoValidado'))
         <div class="alert alert-info">{{ Session::get('bonoValidado') }}</div>
     @endif
