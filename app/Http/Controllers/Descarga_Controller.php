@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Setasign\Fpdf\FPDF;
+use Setasign\Fpdi\FPDI;
 
 class Descarga_Controller extends Controller
 {
@@ -17,7 +19,7 @@ class Descarga_Controller extends Controller
     	if(isset($campana_for_vista) and !empty($campana_for_vista)){
     		switch ($campana_for_vista[0]->campana) {
 	    		case 'sonic':
-	    			$campana = array($campana);
+	    			$campana = array($campana_for_vista[0]->id);
 					$imagenes = array(1 => 'default_uno.png', 2 => 'default_dos.png' );
 					$titulo = array(1 => 'BONO DE LEALTAD SONIC');
 					$description = array(1 => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas');
@@ -49,7 +51,39 @@ class Descarga_Controller extends Controller
 	    }
     }
 
-    public function descarga_bono(){
-    	echo 'entro';
+    public function descarga_bono(Request $request){
+    	$this->validate($request, [
+    		'vin'=> 'required|alpha_num|min:17|exists:vins|max:17',
+    		'terminos'=>'required'
+    		]);
+    	$vin_para_bono = DB::select('select * from vins where id_campana = \''.$request->id_campana.'\' and llave = \''.md5($request->vin.'-'.$request->id_campana).'\';');
+    	$vin_folio = DB::select('select  v.id, f.folio, v.vin, v.llave  from folios f inner join vins v on v.id = f.id_vin where v.id = '.$vin_para_bono[0]->id);
+    	//insertar en descargas
+    	//$this->generacion_pdf($request->id_campana, $vin_folio[0]->folio);    	
+    }
+
+    //funcion generadora del bono pdf
+    public function generacion_pdf($campana, $folio, $fuente = 'Arial'){
+    	$template_pdf = public_path()."/files/certificado_template".$campana.".pdf";
+    	$pdf = new FPDI('L', 'mm', array(139.7, 215.9));
+    	//cargamos el bono
+		$pdf->setSourceFile($template_pdf);
+		//agregamos una pagina
+		$pdf->AddPage();
+		// seleccionamos la primera pagina del docuemnto importado
+		$tplIdx = $pdf->importPage(1);
+		// // usamos la pagina importado como template
+		$pdf->useTemplate($tplIdx);
+		// #$pdf->SetXY(60,191.5);  // en bajas
+		$pdf->SetXY(82.5,7.5);
+		//
+		$pdf->SetFont($fuente,'BI',12);
+		//
+		$pdf->SetTextColor(255,255,255);	
+		    //escribimos el numero de recibo
+		$pdf->Write(0, 'FOLIO: '.$folio);
+		ob_end_clean();
+		//descargamos el archivo
+		$pdf->Output('bono-'.$folio.'.pdf', 'D');
     }
 }

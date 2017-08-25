@@ -54,7 +54,7 @@
            <br>
            <a href="terminos_def" target="_blank">Acepto términos y condiciones</a> 
            {!! Form::checkbox('terminos'); !!}
-           <input type="hidden" name="brand" value="{{$campana[0]}}">
+           <input type="hidden" name="id_campana" value="{{$campana[0]}}">
            <div>{!! Form::submit('DESCARGAR'); !!}</div>
            <p>&nbsp;</p>
            
