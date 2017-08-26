@@ -8,6 +8,7 @@ use App\Http\Requests;
 use DB;
 use Session;
 use Redirect;
+use App\Unidad;
 
 class Unidades_Controller extends Controller
 {
