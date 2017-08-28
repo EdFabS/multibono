@@ -10,6 +10,8 @@ use App\Campana;
 use App\CampanaModelo;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\Input;
+use Storage;
 
 class Campanas_Controller extends Controller
 {
@@ -39,32 +41,45 @@ class Campanas_Controller extends Controller
     //
     public function crear_campana(Request $request){
         $this->validate($request, [
-            'campana'=>'required|alpha_num|unique:campanas',
-            'id_unidad'=>'required'
+            //'campana'=>'required|alpha_num|unique:campanas',
+            //'id_unidad'=>'required',
+            'imagen_logo' => 'required',
+            'imagen_head' => 'required',
+            //'titulo' => 'required',
+            //'descripcion' => 'required',
+            //'legales' => 'required'
             ]);
-        $request->all();
-        $campana = new Campana;
-        $campana->campana = $request->campana;
-        $campana->id_unidad = $request->id_unidad;
-        $campana->save();
+        //$request->all();
+        //$campana = new Campana;
+        //$campana->campana = $request->campana;
+        //$campana->id_unidad = $request->id_unidad;
+        //$campana->save();
         //obtengo el id del registro de la campaña creada para poder agregar a la tabla campana-modelos
-        $campana_db = DB::Table('campanas')
-            ->where('campana', $request->campana)
-            ->get();
+        //$campana_db = DB::Table('campanas')
+         //   ->where('campana', $request->campana)
+         //   ->get();
         //llamar modelos para comparar cuales son los que se asociaran con la campaña
-        $modelos_db = DB::Table('modelos')
-            ->get();
-        foreach ($modelos_db as $key) {
-            $id_modelo = $key->id;
-            if ($request->$id_modelo != NULL){
+        //$modelos_db = DB::Table('modelos')
+         //   ->get();
+        //foreach ($modelos_db as $key) {
+         //   $id_modelo = $key->id;
+         //   if ($request->$id_modelo != NULL){
                 //insertar el modelo y la campana en campana_modelos
-                $campana_modelo = new CampanaModelo;
-                $campana_modelo->id_modelo = $id_modelo;
-                $campana_modelo->id_campana = $campana_db[0]->id;
-                $campana_modelo->save();
-            }
-        }
-        Session::flash('registro_guardado', 'Se ha guardado correctamente como nuevo registro');
-        return redirect('/campanas');
+         //       $campana_modelo = new CampanaModelo;
+         //       $campana_modelo->id_modelo = $id_modelo;
+         //       $campana_modelo->id_campana = $campana_db[0]->id;
+          //      $campana_modelo->save();
+          //  }
+        //}
+        //datos de campaña
+        //crear carpeta de campaña
+        $carpeta_campana = Storage::makeDirectory('campana');
+        //cacha el archivio pasado por post
+        $file = Input::file('imagen_logo');
+        $file_name = $file->getClientOriginalName();
+        //mueve el archivo a la carpeta public/files
+        $file->move('files/', $file_name);
+        //Session::flash('registro_guardado', 'Se ha guardado correctamente como nuevo registro');
+        //return redirect('/campanas');
     }
 }
