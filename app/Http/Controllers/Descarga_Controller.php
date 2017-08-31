@@ -21,7 +21,6 @@ class Descarga_Controller extends Controller
     		'terminos'=>'required'
     		]);
     	$vin_para_bono = DB::select('select * from vins where id_campana = \''.$request->id_campana.'\' and llave = \''.md5($request->vin.'-'.$request->id_campana).'\';');
-    	var_dump($vin_para_bono);
     	if(!empty($vin_para_bono)){
 	    	$vin_folio = DB::select('select  v.id, f.folio, v.vin, v.llave  from folios f inner join vins v on v.id = f.id_vin where v.id = '.$vin_para_bono[0]->id);
 	    	//insertar en descargas
