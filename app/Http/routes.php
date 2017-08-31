@@ -42,4 +42,7 @@ Route::get('descarga/{campana}','Form_Descarga_Controller@descarga');
 Route::post('descarga_bono','Descarga_Controller@descarga_bono');
 //redimir folios
 Route::get('folio', 'Folio_Controller@folio');
+Route::get('folio/{campana}', 'Folio_Controller@folio');
 Route::post('buscar_folio', 'Folio_Controller@buscar_folio');
+Route::get('folio_form/{folio}', 'Redimir_Folio_Controller@folio_form');
+Route::post('redimir', 'Redimir_Folio_Controller@redimir');
