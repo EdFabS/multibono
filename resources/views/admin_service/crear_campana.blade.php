@@ -29,9 +29,9 @@
         <input type="checkbox" name="{{$modelo->id}}" value="{{$modelo->modelo}}">
     @endforeach
     <div><br>{!! Form::label('label_imagen_logo', 'Imagen logo'); !!}</div>
-    <div>{!! Form::file('imagen_logo'); !!}</div>
+    <div>{!! Form::file('url_img_logo'); !!}</div>
     <div><br>{!! Form::label('label_imagen_head', 'Imagen head'); !!}</div>
-    <div>{!! Form::file('imagen_head'); !!}</div>
+    <div>{!! Form::file('url_img_head'); !!}</div>
     <div><br>{!! Form::label('titulo_label', 'Titulo'); !!}</div>
     <div>{!! Form::Text('titulo'); !!}</div>
     <div><br>{!! Form::label('label_descripcion', 'Descripcion'); !!}</div>
