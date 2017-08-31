@@ -8,6 +8,6 @@ class Campana extends Model
 {
     //
     protected $fillable = [
-        'campana', 'id_unidad'
+        'campana', 'id_unidad', 'url_img_logo', 'url_img_head', 'titulo', 'descripcion', 'legales'
     ];
 }
