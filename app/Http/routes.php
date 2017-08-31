@@ -40,6 +40,8 @@ Route::post('addVins', 'Vins_Controller@addVins');
 Route::get('descarga/','Form_Descarga_Controller@descarga');
 Route::get('descarga/{campana}','Form_Descarga_Controller@descarga');
 Route::post('descarga_bono','Descarga_Controller@descarga_bono');
+//descarga por folio
+Route::get('descarga_folio/{folio}','Descarga_Controller@descarga_folio');
 //redimir folios
 Route::get('folio', 'Folio_Controller@folio');
 Route::get('folio/{campana}', 'Folio_Controller@folio');

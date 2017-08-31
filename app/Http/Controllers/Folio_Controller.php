@@ -23,7 +23,7 @@ class Folio_Controller extends Controller
                 ->with('imagen_logo', $imagen_logo)
                 ->with('imagen_head', $imagen_head);
         }else{
-            abort(500);
+            return view('errors/default');
         }
     }
 

@@ -22,7 +22,16 @@ class Descarga_Controller extends Controller
     		]);
     	$vin_para_bono = DB::select('select * from vins where id_campana = \''.$request->id_campana.'\' and llave = \''.md5($request->vin.'-'.$request->id_campana).'\';');
     	if(!empty($vin_para_bono)){
-	    	$vin_folio = DB::select('select  v.id, f.folio, v.vin, v.llave  from folios f inner join vins v on v.id = f.id_vin where v.id = '.$vin_para_bono[0]->id);
+	    	$vin_folio = DB::select('select  v.id as id_vin, f.id as id_folio, f.folio, v.vin, v.llave  from folios f inner join vins v on v.id = f.id_vin where v.id = '.$vin_para_bono[0]->id);
+	    	$redimido = DB::selectOne('select * from redimidos where id_folio = '.$vin_folio[0]->id_folio);
+	    	//verificaion si h ya ha sido redimido
+	    	if(!empty($redimido)){
+	    		$campana = DB::selectOne('select * from campanas where id = '.$request->id_campana);
+		    	if(!empty($campana)){
+		    		Session::flash('vin_invalido', 'el Folio generado con este VIN ha sido REDIMIDO');
+		        	return redirect('/descarga/'.$campana->campana);
+		    	}
+		    }
 	    	//insertar en descargas
 	    	$bono_descargado = DB::selectOne('select * from downloads where llave = \''.$vin_folio[0]->llave.'\'');
 	    	if (empty($bono_descargado)) {
@@ -50,6 +59,39 @@ class Descarga_Controller extends Controller
 	        	return redirect('/descarga');
 	    	}
 	    }
+    }
+
+    public function descarga_folio($folio){
+    	$folio_db = DB::selectOne('select id, folio, id_vin from folios where folio = \''.$folio.'\'');
+    	if(empty($folio_db)){
+    		Session::flash('vin_invalido', 'El folio invalido');
+	        	return redirect('/');
+    	}
+    	$redimido = DB::selectOne('select * from redimidos where id_folio = '.$folio_db->id);
+    	//verificaion si h ya ha sido redimido
+    	if(!empty($redimido)){
+	    		Session::flash('vin_invalido', 'el Folio generado con este VIN ha sido REDIMIDO');
+	        	return redirect('/');
+	    }else{
+	    	$vin_folio = DB::selectOne('select * from vins where id = '.$folio_db->id_vin);
+	    	var_dump($vin_folio);
+	    	//insertar en descargas
+	    	$bono_descargado = DB::selectOne('select * from downloads where llave = \''.$vin_folio->llave.'\'');
+	    	if (empty($bono_descargado)) {
+	    		$bono_insertar = new Download;
+	    		$bono_insertar->llave = $vin_folio->llave;
+	    		$bono_insertar->descargas = 1;
+	    		$bono_insertar->save();
+	    	}
+	    	else{
+	    		$contador = $bono_descargado->descargas + 1;
+	    		$descarga_update = Download::find($bono_descargado->id);
+			    $descarga_update->descargas = $contador;
+			    $descarga_update->save();
+	    	}
+	    	$this->generacion_pdf($vin_folio->id_campana, $folio_db->folio);
+	    }
+
     }
 
     //funcion generadora del bono pdf

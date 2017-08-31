@@ -33,7 +33,7 @@ class Form_Descarga_Controller extends Controller
 	    		->with('description', $description)
 	    		->with('legales', $legales);
     	}else{
-	        abort(500);
+	        return view('errors/default');
 	    }
     }
 }

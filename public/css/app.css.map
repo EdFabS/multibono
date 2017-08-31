@@ -1,0 +1,1 @@
+{"version":3,"sources":["app_xs.scss"],"names":[],"mappings":"AAAA;EACC,uBAAuB,EACvB","file":"app.css","sourcesContent":["body{\r\n\tbackground-color: gray;\r\n}"]}
