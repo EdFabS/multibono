@@ -5,10 +5,11 @@
 @section('content')
 <div class="panel ">
   <div class="panel-heading">
-    @if(isset($imagenes) and !empty($imagenes))
-      @for ($i = 1; $i <= count($imagenes); $i++)
-           <img src="/images/{{$imagenes[$i]}}" class="img-responsive">
-      @endfor
+    @if(isset($imagen_logo) and !empty($imagen_logo))
+           <img src="{{$imagen_logo[0]}}" class="img-responsive">
+    @endif
+    @if(isset($imagen_head) and !empty($imagen_head))
+           <img src="{{$imagen_head[0]}}" class="img-responsive">
     @endif
   </div>
   <div class="panel-body">
@@ -33,9 +34,7 @@
           <b>
             <i>
               @if(isset($titulo) and !empty($titulo))
-                @for ($i = 1; $i <= count($titulo); $i++)
-                    The current value is {{ $titulo[$i]}}
-                @endfor
+                    {!!$titulo[0]!!}
               @endif
             </i>
           </b>
@@ -44,9 +43,7 @@
       <div class="formulario">
         <p>
           @if(isset($description) and !empty($description))
-                @for ($i = 1; $i <= count($description); $i++)
-                    The current value is {{ $description[$i]}}
-                @endfor
+                    {!!$description[0]!!}
               @endif
         </p>
       
@@ -57,7 +54,9 @@
            <br>
            <a href="terminos_def" target="_blank">Acepto términos y condiciones</a> 
            {!! Form::checkbox('terminos'); !!}
-           <input type="hidden" name="id_campana" value="{{$campana[0]}}">
+           @if(isset($campana) and !empty($campana))
+            <input type="hidden" name="id_campana" value="{{$campana[0]}}">
+           @endif
            <div>{!! Form::submit('DESCARGAR'); !!}</div>
            <p>&nbsp;</p>
            
