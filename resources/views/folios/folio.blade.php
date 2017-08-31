@@ -5,10 +5,12 @@
 @section('content')
 <div class="panel ">
   <div class="panel-heading">
-      <img src="{{asset('images/Landing_Dealer_2_02.png')}}" class="img-responsive">
-      @if(isset($brand) && count($brand) > 0 && $brand == 'cavalier')
-        <img src="{{asset('images/Bono_Cavalier_VIN_02.png')}}" class="img-responsive">
-      @endif
+    @if(isset($imagen_logo) and !empty($imagen_logo))
+           <img src="{{$imagen_logo[0]}}" class="img-responsive">
+    @endif
+    @if(isset($imagen_head) and !empty($imagen_head))
+           <img src="{{$imagen_head[0]}}" class="img-responsive">
+    @endif
   </div>
 
   <div class="panel-body">
@@ -21,13 +23,19 @@
             </ul>
         </div>
     @endif
+    @if (Session::has('folio_invalido'))
+        <div class="alert alert-danger">{{ Session::get('folio_invalido') }}</div>
+    @endif
+    @if (Session::has('folio_valido'))
+        <div class="alert alert-success">{{ Session::get('folio_valido') }}</div>
+    @endif
     @if (Session::has('folioRedimido'))
         <div class="alert alert-info">{{ Session::get('folioRedimido') }}</div>
     @endif
     <div class="contenido col-md-12">
       <div class="titulo">
-        @if(isset($brand) && count($brand) > 0 && $brand == 'gmfequinox')
-          <h3><b><i>BONO DE LEALTAD CAVALIER</i></b></h3>
+        @if(isset($titulo) && count($titulo) > 0)
+          <h3><b><i>{{!!$titulo!!}}</i></b></h3>
         @endif
       </div>
       <div class="formulario">
@@ -37,12 +45,15 @@
       
    {!! Form::open(['post' => 'Folio_Controller@buscar_folio', 'url' => 'buscar_folio']) !!}
        {!! Form::token(); !!}
+       @if(isset($campana) and !empty($campana))
+            <input type="hidden" name="id_campana" value="{{$campana[0]}}">
+           @endif
        <div>{!! Form::label('vinLabel', 'Folio:'); !!}</div>
        <div>{!! Form::Text('folio',$value = null, ['class' => 'form-control', 'placeholder' => 'Ingresa Folio']); !!}</div>
        @if(isset($brand) && count($brand) > 0)
        @endif
        <div class="btn-folio">{!! Form::submit('VALIDAR') !!}</div>
-       <div>Para cualquier duda o aclaración, favor de comunicarce al 01 800 733 0288 de lunes a viernes de 9 am a 6 pm.</div>
+       <div>Para cualquier duda o aclaración, favor de comunicarse al 01 800 733 0288 de lunes a viernes de 9 am a 6 pm.</div>
    {!! Form::close() !!}
       </div>
     </div>
