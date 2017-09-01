@@ -1,15 +1,18 @@
 @extends('../layouts.app')
 
-@section('titleSection', 'bono-def')
+@section('titleSection', $title[0])
 
 @section('content')
-<div class="panel ">
+@if($campana->id == '1')
+<div class="panel chevrolet">
+@else<div class="panel">
+@endif
   <div class="panel-heading">
-    @if(isset($imagen_logo) and !empty($imagen_logo))
-           <img src="{{$imagen_logo[0]}}" class="img-responsive">
+    @if(isset($campana->url_img_logo) and !empty($campana->url_img_logo))
+           <img src="{{$campana->url_img_logo}}" class="img-responsive">
     @endif
-    @if(isset($imagen_head) and !empty($imagen_head))
-           <img src="{{$imagen_head[0]}}" class="img-responsive">
+    @if(isset($campana->url_img_head) and !empty($campana->url_img_head))
+           <img src="{{$campana->url_img_head}}" class="img-responsive">
     @endif
   </div>
   <div class="panel-body">
@@ -32,18 +35,16 @@
       <div class="titulo">
         <h3>
           <b>
-            <i>
-              @if(isset($titulo) and !empty($titulo))
-                    {!!$titulo[0]!!}
+              @if(isset($campana->titulo) and !empty($campana->titulo))
+                    {!!$campana->titulo!!}
               @endif
-            </i>
           </b>
         </h3>
       </div>
       <div class="formulario">
         <p>
-          @if(isset($description) and !empty($description))
-                    {!!$description[0]!!}
+          @if(isset($campana->descripcion) and !empty($campana->descripcion))
+                    {!!$campana->descripcion!!}
               @endif
         </p>
       
@@ -55,14 +56,14 @@
            <a href="terminos_def" target="_blank">Acepto términos y condiciones</a> 
            {!! Form::checkbox('terminos'); !!}
            @if(isset($campana) and !empty($campana))
-            <input type="hidden" name="id_campana" value="{{$campana[0]}}">
+            <input type="hidden" name="id_campana" value="{{$campana->id}}">
            @endif
            <div>{!! Form::submit('DESCARGAR'); !!}</div>
            <p>&nbsp;</p>
            
            <p style="text-align: justify;">
-             @if(isset($legales) and !empty($legales))
-                {!! $legales[0]!!}                
+             @if(isset($campana->legales) and !empty($campana->legales))
+                {!!$campana->legales!!}
               @endif
            </p>
         {!! Form::close() !!}

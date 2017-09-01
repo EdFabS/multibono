@@ -1,0 +1,41 @@
+//fuentes chevrolet
+$louisregular-webfont : 'louisregular-webfont';
+$LouisItalic : 'LouisItalic';
+$louisbold-webfont : 'louisbold-webfont';
+$LouisBoldItalic : 'LouisBoldItalic';
+@font-face{
+  font-family: $louisregular-webfont;
+  src:url(fonts/chevrolet/#{$louisregular-webfont}.eot?#iefix) format("embedded-opentype"),
+        url(fonts/chevrolet/#{$louisregular-webfont}.woff) format("woff"),
+        url(fonts/chevrolet/#{$louisregular-webfont}.ttf) format("truetype"),
+        url(fonts/chevrolet/#{$louisregular-webfont}.svg) format("svg");
+        font-style:normal;
+        font-weight:normal;
+}
+@font-face{
+  font-family: $LouisItalic;
+  src:url(fonts/chevrolet/#{$LouisItalic}.eot?#iefix) format("embedded-opentype"),
+        url(fonts/chevrolet/#{$LouisItalic}.woff) format("woff"),
+        url(fonts/chevrolet/#{$LouisItalic}.ttf) format("truetype"),
+        url(fonts/chevrolet/#{$LouisItalic}.svg) format("svg");
+        font-style:italic;
+        font-weight:normal;
+}
+@font-face{
+  font-family: $louisbold-webfont;
+  src:url(fonts/chevrolet/#{$louisbold-webfont}.eot?#iefix) format("embedded-opentype"),
+        url(fonts/chevrolet/#{$louisbold-webfont}.woff) format("woff"),
+        url(fonts/chevrolet/#{$louisbold-webfont}.ttf) format("truetype"),
+        url(fonts/chevrolet/#{$louisbold-webfont}.svg) format("svg");
+        font-style:normal;
+        font-weight:normal;
+}
+@font-face{
+  font-family: $LouisBoldItalic;
+  src:url(fonts/chevrolet/#{$LouisBoldItalic}.eot?#iefix) format("embedded-opentype"),
+        url(fonts/chevrolet/#{$LouisBoldItalic}.woff) format("woff"),
+        url(fonts/chevrolet/#{$LouisBoldItalic}.ttf) format("truetype"),
+        url(fonts/chevrolet/#{$LouisBoldItalic}.svg) format("svg");
+        font-style:normal;
+        font-weight:normal;
+}

@@ -16,22 +16,15 @@ class Form_Descarga_Controller extends Controller
 {
     //
     public function descarga($campana = 'default'){
-    	$campana_for_vista = DB::select('select * from campanas where campana = \''.$campana.'\'');
+    	$campana_db = DB::selectOne('select * from campanas where campana = \''.$campana.'\'');
+    	var_dump($campana_db);
     	//por si entra a la ruta sin campaña
-    	if(isset($campana_for_vista) and !empty($campana_for_vista)){
-    	$campana = array($campana_for_vista[0]->id);
-		$imagen_logo= array($campana_for_vista[0]->url_img_logo);
-		$imagen_head= array($campana_for_vista[0]->url_img_head);
-		$titulo = array($campana_for_vista[0]->titulo);
-		$description = array($campana_for_vista[0]->descripcion);
-		$legales = array($campana_for_vista[0]->legales);
+    	if(isset($campana_db) and !empty($campana_db)){
+    	$title = array($campana);
+    	$campana = $campana_db;
     	return view('descarga/bono')
-	    		->with('campana', $campana)
-	    		->with('imagen_logo', $imagen_logo)
-	    		->with('imagen_head', $imagen_head)
-	    		->with('titulo', $titulo)
-	    		->with('description', $description)
-	    		->with('legales', $legales);
+    			->with('title', $title)
+	    		->with('campana', $campana);
     	}else{
 	        return view('errors/default');
 	    }

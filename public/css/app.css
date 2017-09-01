@@ -1,4 +1,70 @@
+@font-face {
+  font-family: "louisregular-webfont";
+  src: url(fonts/chevrolet/louisregular-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/chevrolet/louisregular-webfont.woff) format("woff"), url(fonts/chevrolet/louisregular-webfont.ttf) format("truetype"), url(fonts/chevrolet/louisregular-webfont.svg) format("svg");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: "LouisItalic";
+  src: url(fonts/chevrolet/LouisItalic.eot?#iefix) format("embedded-opentype"), url(fonts/chevrolet/LouisItalic.woff) format("woff"), url(fonts/chevrolet/LouisItalic.ttf) format("truetype"), url(fonts/chevrolet/LouisItalic.svg) format("svg");
+  font-style: italic;
+  font-weight: normal; }
+
+@font-face {
+  font-family: "louisbold-webfont";
+  src: url(fonts/chevrolet/louisbold-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/chevrolet/louisbold-webfont.woff) format("woff"), url(fonts/chevrolet/louisbold-webfont.ttf) format("truetype"), url(fonts/chevrolet/louisbold-webfont.svg) format("svg");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: "LouisBoldItalic";
+  src: url(fonts/chevrolet/LouisBoldItalic.eot?#iefix) format("embedded-opentype"), url(fonts/chevrolet/LouisBoldItalic.woff) format("woff"), url(fonts/chevrolet/LouisBoldItalic.ttf) format("truetype"), url(fonts/chevrolet/LouisBoldItalic.svg) format("svg");
+  font-style: normal;
+  font-weight: normal; }
+
 body {
-  background-color: gray; }
+  background-color: white; }
+
+.panel {
+  max-width: 877px;
+  margin: 0 auto; }
+
+.panel {
+  font-family: Arial; }
+  .panel .titulo {
+    font-style: italic; }
+  .panel input[type=submit] {
+    margin: 20px 0;
+    width: 247px;
+    height: 43px;
+    background-color: gray;
+    border-width: 0;
+    color: white; }
+  .panel button {
+    margin-bottom: 10px;
+    width: 247px;
+    height: 43px;
+    background-color: gray;
+    border-width: 0;
+    color: white; }
+
+.chevrolet {
+  font-family: "louisregular-webfont"; }
+  .chevrolet .titulo {
+    font-style: italic; }
+  .chevrolet input[type=submit] {
+    margin: 20px 0;
+    width: 247px;
+    height: 43px;
+    background-color: #ecac00;
+    border-width: 0;
+    color: white; }
+  .chevrolet button {
+    margin-bottom: 10px;
+    width: 247px;
+    height: 43px;
+    background-color: #ecac00;
+    border-width: 0;
+    color: white; }
 
 /*# sourceMappingURL=app.css.map */

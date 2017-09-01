@@ -1,3 +1,55 @@
 body{
-	background-color: gray;
+	background-color: white;
+}
+.panel{
+	max-width: 877px;
+	margin: 0 auto;
+}
+//default
+.panel{
+	font-family: Arial;
+
+	.titulo{
+		font-style: italic;
+	}
+	input[type=submit] {
+		margin: 20px 0;
+		width: 247px;
+		height: 43px;
+		background-color:gray;
+		border-width: 0;
+		color: white;
+	}
+	button{
+		margin-bottom: 10px;
+		width: 247px;
+		height: 43px;
+		background-color:gray;
+		border-width: 0;
+		color: white;
+	}
+}
+//chevrolet
+.chevrolet{
+	font-family: $louisregular-webfont;
+
+	.titulo{
+		font-style: italic;
+	}
+	input[type=submit] {
+		margin: 20px 0;
+		width: 247px;
+		height: 43px;
+		background-color:$amarillo_chevrolet;
+		border-width: 0;
+		color: white;
+	}
+	button{
+		margin-bottom: 10px;
+		width: 247px;
+		height: 43px;
+		background-color:$amarillo_chevrolet;
+		border-width: 0;
+		color: white;
+	}
 }

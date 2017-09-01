@@ -3,7 +3,10 @@
 @section('titleSection', 'Buscar folio')
 
 @section('content')
-<div class="panel ">
+@if($campana[0] == '1')
+<div class="panel chevrolet">
+@else<div class="panel">
+@endif
   <div class="panel-heading">
     @if(isset($imagen_logo) and !empty($imagen_logo))
            <img src="{{$imagen_logo[0]}}" class="img-responsive">
