@@ -41,14 +41,15 @@ class Campanas_Controller extends Controller
     //
     public function crear_campana(Request $request){
         $this->validate($request, [
-            'campana'=>'required|alpha_num|unique:campanas',
-            'id_unidad'=>'required',
-            'url_img_logo' => 'required|unique:campanas',
-            'url_img_head' => 'required|unique:campanas',
+            // 'campana'=>'required|alpha_num|unique:campanas',
+            // 'id_unidad'=>'required',
+            // 'url_img_logo' => 'required|unique:campanas',
+            // 'url_img_head' => 'required|unique:campanas',
             'titulo' => 'required',
             'descripcion' => 'required',
             'legales' => 'required'
             ]);
+
         //guardamos las imagenes en local y ruta en base de datos
         Storage::makeDirectory('public/'.$request->campana);
         $file = Input::file('url_img_logo');
@@ -66,11 +67,17 @@ class Campanas_Controller extends Controller
         //cambiamos texto a codigo etiqueta para que sea interpretado
 
         $titulo = $request->titulo;
-        echo html_entity_decode($titulo).'<br>';
         $descripcion = $request->descripcion;
-        echo html_entity_decode($descripcion).'<br>';
         $legales = $request->legales;
-        echo html_entity_decode($legales).'<br>';
+
+        //reemplazar acentos por codigo html
+        $titulo_replace = $this->tildesHTML($titulo);
+        $descripcion_replace = $this->tildesHTML($descripcion);
+        $legales_replace = $this->tildesHTML($legales);
+        //reemplazar simbolo de registro
+        $titulo_replace = $this->regHTML($titulo_replace);
+        $descripcion_replace = $this->regHTML($descripcion_replace);
+        $legales_replace = $this->regHTML($legales_replace);
 
         //guardamos en base de datos
 
@@ -79,9 +86,9 @@ class Campanas_Controller extends Controller
         $campana->id_unidad = $request->id_unidad;
         $campana->url_img_logo = $url_logo;
         $campana->url_img_head = $url_head;
-        $campana->titulo = $titulo;
-        $campana->descripcion = $descripcion;
-        $campana->legales = $legales;
+        $campana->titulo = $titulo_replace;
+        $campana->descripcion = $descripcion_replace;
+        $campana->legales = $legales_replace;
          $campana->save();
 
         //obtengo el id del registro de la campaña creada para poder agregar a la tabla campana-modelos
@@ -112,5 +119,18 @@ class Campanas_Controller extends Controller
 
         Session::flash('registro_guardado', 'Se ha guardado correctamente como nuevo registro');
         return redirect('/campanas');
+    }
+
+    public function tildesHTML($cadena){
+        return str_replace(
+            array("á","é","í","ó","ú","ñ","Á","É","Í","Ó","Ú","Ñ"),
+            array("&aacute;","&eacute;","&iacute;","&oacute;","&uacute;","&ntilde;",
+            "&Aacute;","&Eacute;","&Iacute;","&Oacute;","&Uacute;","&Ntilde;"), 
+            $cadena);
+    }
+
+    public function regHTML($cadena){
+        return str_replace("®","<sup>&reg;</sup>", 
+            $cadena);
     }
 }
