@@ -71,7 +71,7 @@
                                     <li><a href="{{ url('/vin') }}">agerega vin</a></li>
                                     <li><a href="{{ url('/vins') }}">agrega vins</a></li>
                                 @endif
-                                @if(Auth::user()->role == 'gm' || Auth::user()->role == 'gmf')
+                                @if(Auth::user()->role == 'admin' || Auth::user()->role == 'gm' || Auth::user()->role == 'gmf')
                                     <li><a href="{{ url('/reportes') }}">reportes</a></li>
                                 @endif
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
