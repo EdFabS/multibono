@@ -15,7 +15,7 @@ class Redimir_Folio_Controller extends Controller
 {
 	public function folio_form($folio_request){
 		//obtenemos los datos necesarios para el gormulario
-		$folio = DB::selectOne('select v.id, f.folio, v.vin, v.id_campana,  v.llave, v.mail from folios f inner join vins v on v.id = f.id_vin where f.folio = \''.$folio_request.'\'');
+		$folio = DB::selectOne('select f.id, f.folio, v.vin, v.id_campana,  v.llave, v.mail from folios f inner join vins v on v.id = f.id_vin where f.folio = \''.$folio_request.'\'');
 		$dealers_db = DB::select('select id, dealer from dealers order by dealer asc');
 		$campana_db = DB::selectOne('select * from campanas where id = '.$folio->id_campana);
 		$campana = array('id_campana'=>$campana_db->id, 'campana'=>$campana_db->campana, 'logo'=>$campana_db->url_img_logo, 'head'=>$campana_db->url_img_head, 'titulo'=> $campana_db->titulo);
