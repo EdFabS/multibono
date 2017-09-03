@@ -9,6 +9,7 @@ use DB;
 use Excel;
 use App\Folio;
 use Illuminate\Support\Facades\Input;
+use Session;
 
 class Vins_Controller extends Controller
 {
@@ -23,6 +24,7 @@ class Vins_Controller extends Controller
     }
     //
     public function vins(){
+        // echo phpinfo();
     	$campanas = DB::Table('campanas')
     		->get();
     	$campanas_array[] = array('id' => '', 'campana' => 'selecciona una opción');
