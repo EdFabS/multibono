@@ -53,7 +53,7 @@
            <div>{!! Form::label('vinLabel', 'VIN:'); !!}</div>
            <div>{!! Form::Text('vin', $value = null, ['class' => 'form-control', 'placeholder' => 'Ingresa VIN']); !!}</div>
            <br>
-           <a href="terminos_def" target="_blank">Acepto términos y condiciones</a> 
+           <a href="terminos_{!!$title[0]!!}" target="_blank">Acepto términos y condiciones</a> 
            {!! Form::checkbox('terminos'); !!}
            @if(isset($campana) and !empty($campana))
             <input type="hidden" name="id_campana" value="{{$campana->id}}">
