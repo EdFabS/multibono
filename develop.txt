@@ -68,3 +68,34 @@ agrega facades y aliases
         // Forms & HTML
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+**************************************************************
+*                Generacion de folios                        *
+**************************************************************
+
+insert into folios (folio, id_vin, created_at, updated_at) select left(replace(uuid(),"-",""), 10), id, now(), now() from vins where flag_folio = false;
+
+update vins set flag_folio = true where flag_folio = false;
+
+
+**************************************************************
+*                queris mas usadas                           *
+**************************************************************
+
+insert into folios (folio, id_vin, created_at, updated_at) select left(replace(uuid(),"-",""), 10), id, now(), now() from vins where flag_folio = false;
+
+update vins set flag_folio = true where flag_folio = false;
+
+
+select * from downloads d 
+inner join vins v on v.llave = d .llave
+inner join campanas c on c.id = v.id_campana
+inner join unidads u on u.id = c.id_unidad
+where u.unidad = 'gm';
+
+select * from redimidos r
+inner join folios f on f.id = r.id_folio
+inner join vins v on v.id = f.id_vin
+inner join campanas c on c.id = v.id_campana
+inner join unidads u on u.id = c.id_unidad
+where u.unidad = 'gmf';
