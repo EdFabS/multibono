@@ -1,5 +1,5 @@
 @extends('../layouts.multibono')
-@section('titleSection', 'Carga de varios VINS')
+@section('title_section', 'Carga de varios VINS')
 @section('content')
     @if(count($errors) > 0)
         <div>
