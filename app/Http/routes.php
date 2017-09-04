@@ -48,3 +48,8 @@ Route::get('folio/{campana}', 'Folio_Controller@folio');
 Route::post('buscar_folio', 'Folio_Controller@buscar_folio');
 Route::get('folio_form/{folio}', 'Redimir_Folio_Controller@folio_form');
 Route::post('redimir', 'Redimir_Folio_Controller@redimir');
+// reportes
+Route::get('reportes', 'Reportes_Controller@reportes');
+Route::get('descargas', 'Reportes_Controller@descargas');
+Route::get('redimidos', 'Reportes_Controller@redimidos');
+Route::get('reporte_descargas/{id_campana}', 'Reportes_Controller@reporte_descargas');
